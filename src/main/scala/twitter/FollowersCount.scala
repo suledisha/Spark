@@ -23,8 +23,7 @@ object FollowersCountMain {
     // ================
 
     val textFile = sc.textFile(args(0))
-    val counts = textFile.flatMap(line => line.split(","))
-      .map(word => (word, 1))
+    val counts = textFile.map(line => (line.split(",")(1),1))
       .reduceByKey(_ + _)
     counts.saveAsTextFile(args(1))
   }
